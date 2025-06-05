@@ -14,7 +14,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/produtos")
 @RequiredArgsConstructor
-public class ProductControleler {
+public class ProductController {
 
   private final ProductService productService;
 
@@ -24,7 +24,7 @@ public class ProductControleler {
     productService.save(productDTO);
   }
 
-  @PostMapping("/{productId}")
+  @PutMapping("/{productId}")
   @ResponseStatus(HttpStatus.CREATED)
   public void edit(@PathVariable("productId") UUID productId, ProductDTO productDTO){
     productService.edit(productId, productDTO);

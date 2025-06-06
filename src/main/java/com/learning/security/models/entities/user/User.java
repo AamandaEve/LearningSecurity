@@ -32,6 +32,12 @@ public class User implements UserDetails {
   @Column(nullable = false)
   private UserRole role;
 
+  public User(String login, String password, UserRole role){
+    this.login = login;
+    this.password = password;
+    this.role = role;
+  }
+
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {//Authority são as roles, coleção de roles
     if (role.equals(UserRole.ADMIN)){

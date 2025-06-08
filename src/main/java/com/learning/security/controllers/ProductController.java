@@ -2,6 +2,7 @@ package com.learning.security.controllers;
 
 import com.learning.security.models.dtos.ProductDTO;
 import com.learning.security.services.ProductService;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,19 +15,19 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/produtos")
 @RequiredArgsConstructor
-public class ProductControleler {
+public class ProductController {
 
   private final ProductService productService;
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public void save(ProductDTO productDTO){
+  public void save(@RequestBody ProductDTO productDTO){
     productService.save(productDTO);
   }
 
-  @PostMapping("/{productId}")
+  @PutMapping("/{productId}")
   @ResponseStatus(HttpStatus.CREATED)
-  public void edit(@PathVariable("productId") UUID productId, ProductDTO productDTO){
+  public void edit(@PathVariable("productId") UUID productId, @RequestBody ProductDTO productDTO){
     productService.edit(productId, productDTO);
   }
 

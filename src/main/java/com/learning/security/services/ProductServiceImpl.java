@@ -29,6 +29,7 @@ public class ProductServiceImpl implements ProductService{
   @Override
   @Transactional
   public void edit(UUID productId, ProductDTO productDTO) {
+    productDTO.setId(null);
     productRepository.findById(productId).orElseThrow(() -> new RuntimeException("Produto não encontrado"));
     Product product = productMapper.toEntity(productDTO);
     product.setId(productId);
